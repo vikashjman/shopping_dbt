@@ -1,0 +1,156 @@
+version: 2
+
+models:
+  - name: customer
+    description: Table representing customer information.
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+          - unique
+          
+      - name: customer_name
+        description: Complete name of the customer
+        tests:
+          - string_not_empty
+
+      - name: region
+        description: Region of the customer
+
+      - name: first_ordered_date
+        description: Date of the first order placed by the customer
+
+      - name: last_ordered_date
+        description: Date of the last order placed by the customer
+
+      - name: total_amount_spent
+        description: Total amount spent by the customer
+
+      - name: total_orders
+        description: Total number of orders placed by the customer
+
+
+
+  - name: market
+    description: Table representing market transactions and product information.
+    columns:
+      - name: ord_id
+        description: Unique identifier for the order.
+        tests:
+          - not_null
+          
+      - name: product_id
+        description: Unique identifier for the product associated with the order.
+        tests:
+          - not_null
+
+      - name: ship_id
+        description: Unique identifier for the shipment associated with the order.
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: Unique identifier for the customer associated with the order.
+        tests:
+          - not_null
+
+      - name: discount
+        description: Discount applied to the order.
+
+      - name: order_quantity
+        description: Quantity of products ordered in the order.
+
+      - name: profit
+        description: Profit generated from the order.
+
+      - name: shipping_cost
+        description: Cost incurred for shipping the order.
+
+      - name: base_margin
+        description: Base margin associated with the product.
+
+      - name: product_category
+        description: Category of the product.
+
+      - name: product_sub_category
+        description: Sub-category of the product.
+
+
+
+  - name: orders
+    description: Table representing order information.
+    columns:
+      - name: order_id
+        description: Unique identifier for the order.
+        tests:
+          - not_null
+          
+      - name: order_date
+        description: Date when the order was placed.
+        tests:
+          - not_null
+
+      - name: order_priority
+        description: Priority level assigned to the order.
+
+      - name: ord_id
+        description: Unique identifier for the order (alias for order_id).
+
+      - name: outcome
+        description: Indicates whether the order resulted in profit or loss.
+
+
+  - name: product
+    description: Table representing product information.
+    columns:
+      - name: category
+        description: Category to which the product belongs.
+        tests:
+          - not_null
+
+      - name: sub_category
+        description: Sub-category to which the product belongs.
+        tests:
+          - not_null
+
+      - name: product_id
+        description: Unique identifier for the product.
+        tests:
+          - not_null
+          - unique
+
+
+  - name: shipping
+    description: Table representing shipping information.
+    columns:
+      - name: order_id
+        description: Unique identifier for the order associated with the shipment.
+        tests:
+          - not_null
+          
+      - name: ship_mode
+        description: Shipping mode used for the shipment.
+        tests:
+          - not_null
+
+      - name: ship_date
+        description: Date when the shipment was made.
+        tests:
+          - not_null
+
+      - name: ship_id
+        description: Unique identifier for the shipment.
+        tests:
+          - not_null
+
+      - name: order_priority
+        description: Priority level assigned to the associated order.
+
+      - name: delayed_in_days
+        description: Number of days the shipment was delayed compared to the order.
+
+      - name: support
+        description: Indicates support for the shipment based on order priority and delay.
+
+
